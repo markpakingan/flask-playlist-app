@@ -151,10 +151,7 @@ def add_song_to_playlist(playlist_id):
     curr_on_playlist = [s.id for s in playlist.songs]
 
 
-    # form.song.choices = (db.session.query(Song.id, Song.title)
-    #                     .filter(Song.id.notin_(curr_on_playlist))
-    #                     .all())
-
+  
     form.song.choices = [(song.id, song.title) for song in db.session.query(Song).filter(Song.id.notin_(curr_on_playlist)).all()]
 
 

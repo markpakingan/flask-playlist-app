@@ -17,9 +17,7 @@ class Playlist(db.Model):
     name = db.Column(db.Text, nullable = False)
     description = db.Column(db.Text, nullable = False)
     
-    #added the code below for testing
-    # new_songs_title = db.Column(db.Text, db.ForeignKey("songs.title"), nullable = False)
-    # new_songs = db.relationship("Song", back_populates = "new_playlists")
+
     songs = db.relationship("Song", secondary = "playlistsongs", backref = "playlists")
 
 class Song(db.Model):
@@ -31,8 +29,7 @@ class Song(db.Model):
     title = db.Column(db.Text, nullable = False)
     artist = db.Column(db.Text, nullable = False)
     
-    #added the code below for testing
-    # new_playlists = db.relationship("Playlist", back_populates = "new_songs")
+
 
 class PlaylistSong(db.Model):
     """Mapping of a playlist to a song."""
@@ -43,8 +40,6 @@ class PlaylistSong(db.Model):
     playlist_id = db.Column(db.Integer, db.ForeignKey("playlists.id"),nullable = False)
     song_id = db.Column(db.Integer, db.ForeignKey("songs.id"), nullable = False)
 
-    # song = db.relationship("Song", backref="playlist_songs")
-    # playlist = db.relationship("Playlist", backref="playlist_songs")
 
 
 # DO NOT MODIFY THIS FUNCTION
